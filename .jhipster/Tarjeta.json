@@ -1,0 +1,52 @@
+{
+    "name": "Tarjeta",
+    "fields": [
+        {
+            "fieldName": "numeroTarjeta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^(\\d{4}[ ]){3}\\d{4}"
+        },
+        {
+            "fieldName": "ccv",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^([0-9]{3,4})$"
+        },
+        {
+            "fieldName": "tipoTarjeta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMaxlength": 50,
+            "fieldValidateRulesPattern": "[A-Z]+"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cliente",
+            "otherEntityRelationshipName": "tarjeta",
+            "relationshipName": "cliente",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190412213504",
+    "entityTableName": "tarjeta",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

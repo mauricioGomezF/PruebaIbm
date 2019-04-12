@@ -1,0 +1,37 @@
+{
+    "name": "Asesor",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMaxlength": 50,
+            "fieldValidateRulesPattern": "[A-Z]+"
+        },
+        {
+            "fieldName": "especialidad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMaxlength": 50,
+            "fieldValidateRulesPattern": "[A-Z]+"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190412213506",
+    "entityTableName": "asesor",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
