@@ -1,0 +1,36 @@
+entity Cliente {
+	nombre String required maxlength(50) pattern(/[A-Z]+/),
+    direccion String required maxlength(100),
+    ciudad String required maxlength(30),
+    telefono String required maxlength(20) pattern (/[0-9]+/)
+}
+
+entity Tarjeta {
+	numeroTarjeta String required pattern(/^(\d{4}[ ]){3}\d{4}/),
+    ccv	String required pattern	(/^([0-9]{3,4})$/),
+    tipoTarjeta String required maxlength(50) pattern(/[A-Z]+/),
+  
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Consumo {
+	fecha Instant required,
+	descripcion String required maxlength(100),
+	monto Double max(999999999999)
+}
+
+entity Asesor {
+	nombre String required maxlength(50) pattern(/[A-Z]+/),
+    especialidad String required maxlength(50) pattern(/[A-Z]+/)
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Cliente to Tarjeta
+}
+
+relationship OneToMany {
+	Cliente to Consumo
+}
+
