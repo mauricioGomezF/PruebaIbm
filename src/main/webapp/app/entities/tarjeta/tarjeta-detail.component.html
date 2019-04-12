@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tarjeta">
+            <h2><span>Tarjeta</span> {{tarjeta.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Numero Tarjeta</span></dt>
+                <dd>
+                    <span>{{tarjeta.numeroTarjeta}}</span>
+                </dd>
+                <dt><span>Ccv</span></dt>
+                <dd>
+                    <span>{{tarjeta.ccv}}</span>
+                </dd>
+                <dt><span>Tipo Tarjeta</span></dt>
+                <dd>
+                    <span>{{tarjeta.tipoTarjeta}}</span>
+                </dd>
+                <dt><span>Cliente</span></dt>
+                <dd>
+                    <div *ngIf="tarjeta.cliente">
+                        <a [routerLink]="['/cliente', tarjeta.cliente?.id, 'view']">{{tarjeta.cliente?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tarjeta', tarjeta.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

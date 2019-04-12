@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-tarjeta-heading">Create or edit a Tarjeta</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!tarjeta.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="tarjeta.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numeroTarjeta">Numero Tarjeta</label>
+                    <input type="text" class="form-control" name="numeroTarjeta" id="field_numeroTarjeta"
+                        [(ngModel)]="tarjeta.numeroTarjeta" required pattern="^(\d{4}[ ]){3}\d{4}"/>
+                    <div [hidden]="!(editForm.controls.numeroTarjeta?.dirty && editForm.controls.numeroTarjeta?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.numeroTarjeta?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.numeroTarjeta?.errors?.pattern">
+                            This field should follow pattern for "Numero Tarjeta".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ccv">Ccv</label>
+                    <input type="text" class="form-control" name="ccv" id="field_ccv"
+                        [(ngModel)]="tarjeta.ccv" required pattern="^([0-9]{3,4})$"/>
+                    <div [hidden]="!(editForm.controls.ccv?.dirty && editForm.controls.ccv?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ccv?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.ccv?.errors?.pattern">
+                            This field should follow pattern for "Ccv".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tipoTarjeta">Tipo Tarjeta</label>
+                    <input type="text" class="form-control" name="tipoTarjeta" id="field_tipoTarjeta"
+                        [(ngModel)]="tarjeta.tipoTarjeta" required maxlength="50" pattern="[A-Z]+"/>
+                    <div [hidden]="!(editForm.controls.tipoTarjeta?.dirty && editForm.controls.tipoTarjeta?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.tipoTarjeta?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.tipoTarjeta?.errors?.maxlength">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.tipoTarjeta?.errors?.pattern">
+                            This field should follow pattern for "Tipo Tarjeta".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cliente">Cliente</label>
+                    <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="tarjeta.cliente" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clienteOption.id === tarjeta.cliente?.id ? tarjeta.cliente : clienteOption" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
